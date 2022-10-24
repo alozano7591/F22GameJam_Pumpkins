@@ -26,11 +26,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        if (cc.isGrounded && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
-        }
-
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         cc.Move(move * Time.deltaTime * playerSpeed);
 
