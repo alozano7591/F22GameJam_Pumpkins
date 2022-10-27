@@ -134,11 +134,5 @@ MonoBehaviour:
   cameraRef: {fileID: 563836557652285881}
   playerTransform: {fileID: 0}
   SmoothFactor: 0.18
-  southViewBias: 3
-  viewAngleToSouth: 0
-  viewAnglePercentToSouth: 0
   LookAtPlayer: 0
-  cameraLeadOffset: {fileID: 0}
-  clickTime: 2
   followJustPlayer: 1
-  useLeadFollow: 0

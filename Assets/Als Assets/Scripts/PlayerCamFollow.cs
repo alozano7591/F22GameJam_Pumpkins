@@ -45,6 +45,11 @@ public class PlayerCamFollow : MonoBehaviour
             _cameraOffset = thisTransformCache.position - playerTransform.position;
         }
 
+        if(PlayerMovement.LocalPlayerInstance)
+        {
+            playerTransform = PlayerMovement.LocalPlayerInstance.transform;
+        }
+
     }
 
     // Update is called once per frame

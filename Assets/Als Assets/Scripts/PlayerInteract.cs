@@ -1,8 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteract : MonoBehaviour
+public class PlayerInteract : MonoBehaviourPunCallbacks
 {
 
     public Transform grabTransform;
@@ -26,40 +27,45 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(Input.GetKeyDown("e"))
+     
+        //if this is our guy, then do the inputs
+        if(photonView.IsMine)
         {
-
-            if(!holdingPumpkin)
+            if (Input.GetKeyDown("e"))
             {
-                if (Physics.Raycast(grabTransform.position, grabTransform.forward, out RaycastHit hitInfo, grabRange))
+
+                if (!holdingPumpkin)
                 {
-
-
-                    if (hitInfo.transform.tag == "pumpkin")
+                    if (Physics.Raycast(grabTransform.position, grabTransform.forward, out RaycastHit hitInfo, grabRange))
                     {
-                        Debug.Log("We hit a pumpkin");
-                        Transform ourNewPumpkin = hitInfo.transform;
-                        pumpkinTrajectory = ourNewPumpkin.GetComponent<PumpkinTrajectory>();
-                        ourNewPumpkin.parent = holdTransform;
-                        ourNewPumpkin.transform.position = holdTransform.position;
-                        holdingPumpkin = true;
 
-                    }
-                    else
-                    {
-                        Debug.Log("We hit something else");
+
+                        if (hitInfo.transform.tag == "pumpkin")
+                        {
+                            Debug.Log("We hit a pumpkin");
+                            Transform ourNewPumpkin = hitInfo.transform;
+                            pumpkinTrajectory = ourNewPumpkin.GetComponent<PumpkinTrajectory>();
+                            ourNewPumpkin.parent = holdTransform;
+                            ourNewPumpkin.transform.position = holdTransform.position;
+                            holdingPumpkin = true;
+
+                        }
+                        else
+                        {
+                            Debug.Log("We hit something else");
+                        }
                     }
                 }
+                else
+                {
+                    pumpkinTrajectory.LaunchPumpkin(throwVelocity);
+                    pumpkinTrajectory = null;
+                    holdingPumpkin = false;
+                }
+
             }
-            else
-            {
-                pumpkinTrajectory.LaunchPumpkin(throwVelocity);
-                pumpkinTrajectory = null;
-                holdingPumpkin = false;
-            }
-            
         }
+        
 
     }
 }
