@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &95336118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 95336119}
+  m_Layer: 3
+  m_Name: PickUpTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &95336119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95336118}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.307, z: 0.099}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3838238825429569054}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1347401605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1347401606}
+  m_Layer: 3
+  m_Name: AboveHeadHold
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1347401606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347401605}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.108, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3838238825429569054}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3838238825429078528
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,10 +887,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3838238825429569054}
   - component: {fileID: 2894151956178718315}
+  - component: {fileID: 7620957645250567892}
   - component: {fileID: 2248963231508135043}
-  m_Layer: 0
+  - component: {fileID: 1406609960}
+  m_Layer: 3
   m_Name: player_male_1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -847,6 +911,8 @@ Transform:
   m_Children:
   - {fileID: 3838238825429569104}
   - {fileID: 3838238825429569052}
+  - {fileID: 95336119}
+  - {fileID: 1347401606}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -862,10 +928,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cefd31c3a2aaee64ba27638b3b31d0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
   cc: {fileID: 2248963231508135043}
-  playerSpeed: 6
+  playerSpeed: 4.4
+  currentVelocity: {x: 0, y: 0, z: 0}
+  currentSpeed: 0
+  previousPos: {x: 0, y: 0, z: 0}
   jumpHeight: 10
   playerRotSpeed: 300
+  playerAnim: {fileID: 0}
+--- !u!114 &7620957645250567892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3838238825429078590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f018b81c4248cf94caa97db9632eb443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabTransform: {fileID: 95336119}
+  holdTransform: {fileID: 1347401606}
+  grabRange: 0.8
 --- !u!143 &2248963231508135043
 CharacterController:
   m_ObjectHideFlags: 0
@@ -884,6 +970,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.55, z: 0}
+--- !u!95 &1406609960
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3838238825429078590}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d3e1f2ba86bb83649950044f3daa2857, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0b64a322d310ea04bba1a9a5f5614920, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3838238825429078624
 GameObject:
   m_ObjectHideFlags: 0
