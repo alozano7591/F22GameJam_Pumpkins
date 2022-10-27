@@ -39,6 +39,11 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - LaunchPumpkinRPC
+  - ChangeOwnerRPC
+  - PickUpPumpkin
+  - PickUpPumpkinRPC
+  - ThrowPumpkinRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

@@ -45,10 +45,12 @@ public class PlayerInteract : MonoBehaviourPunCallbacks
                         if (hitInfo.transform.tag == "pumpkin")
                         {
                             Debug.Log("We hit a pumpkin");
-                            Transform ourNewPumpkin = hitInfo.transform;
-                            pumpkinTrajectory = ourNewPumpkin.GetComponent<PumpkinTrajectory>();
-                            ourNewPumpkin.parent = holdTransform;
-                            ourNewPumpkin.transform.position = holdTransform.position;
+                            pumpkinTrajectory = hitInfo.transform.GetComponent<PumpkinTrajectory>();
+
+                            photonView.RPC("PickUpPumpkinRPC", RpcTarget.All, PumpkinManager.Instance.GetPumpkinIndex(pumpkinTrajectory));
+
+                            pumpkinTrajectory.transform.parent = holdTransform;
+                            pumpkinTrajectory.transform.position = holdTransform.position;
                             holdingPumpkin = true;
 
                         }
@@ -60,14 +62,68 @@ public class PlayerInteract : MonoBehaviourPunCallbacks
                 }
                 else
                 {
-                    pumpkinTrajectory.LaunchPumpkin(throwVelocity.magnitude * playerMovement.movementDirection);
-                    pumpkinTrajectory = null;
-                    holdingPumpkin = false;
+                    if(pumpkinTrajectory != null)
+                    {
+                        //pumpkinTrajectory.LaunchPumpkin(throwVelocity.magnitude * playerMovement.movementDirection);
+                        //pumpkinTrajectory = null;
+                        //holdingPumpkin = false;
+
+                        //photonView.RPC("ThrowPumpkinRPC", RpcTarget.All, throwVelocity.magnitude * playerMovement.movementDirection);
+
+                        photonView.RPC("ThrowPumpkinRPC", RpcTarget.All);
+
+                    }
+                    
                 }
 
             }
         }
-        
+
+    }
+
+    [PunRPC]
+    public void PickUpPumpkinRPC(int pumpkinNum)
+    {
+        pumpkinTrajectory = PumpkinManager.Instance.pumpkinList[pumpkinNum];
+
+        //PumpkinTrajectory pumpkin = PumpkinManager.Instance.pumpkinList[pumpkinNum];
+
+        if (!photonView.IsMine)
+        {
+
+            Debug.Log("pick up the pumpkin");
+            pumpkinTrajectory.transform.parent = holdTransform;
+            pumpkinTrajectory.transform.position = holdTransform.position;
+            holdingPumpkin = true;
+        }
+
+    }
+
+    //[PunRPC]
+    //public void ThrowPumpkinRPC(Vector3 flyVocity)
+    //{
+
+    //    if(pumpkinTrajectory)
+    //    {
+    //        pumpkinTrajectory.LaunchPumpkin(flyVocity);
+            
+    //        holdingPumpkin = false;
+    //        pumpkinTrajectory = null;
+    //    }
+
+    //}
+
+    [PunRPC]
+    public void ThrowPumpkinRPC()
+    {
+
+        if (pumpkinTrajectory)
+        {
+            pumpkinTrajectory.LaunchPumpkin(throwVelocity.magnitude * playerMovement.transform.forward);
+
+            holdingPumpkin = false;
+            pumpkinTrajectory = null;
+        }
 
     }
 }

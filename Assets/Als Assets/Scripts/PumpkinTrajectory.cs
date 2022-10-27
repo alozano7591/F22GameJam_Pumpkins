@@ -1,8 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PumpkinTrajectory : MonoBehaviour
+public class PumpkinTrajectory : MonoBehaviourPunCallbacks
 {
 
     public float gravityVal = -9.81f;
@@ -70,6 +71,22 @@ public class PumpkinTrajectory : MonoBehaviour
         currentVelocity = startVelocity;
         pumpkinInLaunch = true;
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="startVelocity"></param>
+    [PunRPC]
+    public void LaunchPumpkinRPC(Vector3 startVelocity)
+    {
+
+        transform.parent = null;
+        currentVelocity = startVelocity;
+        pumpkinInLaunch = true;
+
+    }
+
+   
 
 
 }
