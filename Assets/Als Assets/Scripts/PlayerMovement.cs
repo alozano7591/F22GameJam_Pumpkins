@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     public float currentSpeed = 0;
     public Vector3 previousPos = new Vector3();
 
+    public Vector3 movementDirection = new Vector3();
+
     public float jumpHeight = 10f;
 
     private float gravityVal = -9.81f;
@@ -99,8 +101,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
             cc.Move(playerVelocity);
 
-            Vector3 movementDirection = inputVector;
-            movementDirection.Normalize();
+            Vector3 moveDirection = inputVector;
+            moveDirection.Normalize();
+
+            movementDirection = moveDirection;
 
             if (movementDirection != Vector3.zero)
             {

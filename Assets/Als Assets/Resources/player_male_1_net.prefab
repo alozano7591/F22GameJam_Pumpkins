@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 95336118}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.307, z: 0.099}
+  m_LocalRotation: {x: 0.1336738, y: -0, z: -0, w: 0.9910254}
+  m_LocalPosition: {x: 0, y: 0.35899997, z: 0.09899998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3838238825429569054}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15.364, y: 0, z: 0}
 --- !u!1 &1347401605
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,6 +937,7 @@ MonoBehaviour:
   currentVelocity: {x: 0, y: 0, z: 0}
   currentSpeed: 0
   previousPos: {x: 0, y: 0, z: 0}
+  movementDirection: {x: 0, y: 0, z: 0}
   jumpHeight: 10
   playerRotSpeed: 300
   ourCam: {fileID: 8781428344690848314}
@@ -955,9 +956,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabTransform: {fileID: 95336119}
   holdTransform: {fileID: 1347401606}
+  playerMovement: {fileID: 0}
   grabRange: 0.8
   pumpkinTrajectory: {fileID: 0}
-  throwVelocity: {x: 0, y: 15, z: 25}
+  throwVelocity: {x: 0, y: 4, z: 5}
   holdingPumpkin: 0
 --- !u!143 &2248963231508135043
 CharacterController:

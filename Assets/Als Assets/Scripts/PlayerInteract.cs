@@ -10,6 +10,8 @@ public class PlayerInteract : MonoBehaviourPunCallbacks
 
     public Transform holdTransform;
 
+    public PlayerMovement playerMovement;
+
     public float grabRange = 2f;
 
     public PumpkinTrajectory pumpkinTrajectory;
@@ -21,7 +23,7 @@ public class PlayerInteract : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -58,7 +60,7 @@ public class PlayerInteract : MonoBehaviourPunCallbacks
                 }
                 else
                 {
-                    pumpkinTrajectory.LaunchPumpkin(throwVelocity);
+                    pumpkinTrajectory.LaunchPumpkin(throwVelocity.magnitude * playerMovement.movementDirection);
                     pumpkinTrajectory = null;
                     holdingPumpkin = false;
                 }

@@ -27,7 +27,7 @@ public class PumpkinTrajectory : MonoBehaviour
         
         if(pumpkinInLaunch)
         {
-            rb.MovePosition(transform.position + (currentVelocity * Time.deltaTime));
+            rb.MovePosition((transform.position + (currentVelocity * Time.deltaTime)));
 
             currentVelocity += Vector3.up * gravityVal * Time.deltaTime;
         }
@@ -63,6 +63,7 @@ public class PumpkinTrajectory : MonoBehaviour
     /// Call this to launch the pumpkin
     /// </summary>
     /// <param name="startVelocity"></param>
+    /// <param name="launchDirection"></param>
     public void LaunchPumpkin(Vector3 startVelocity)
     {
         transform.parent = null;
