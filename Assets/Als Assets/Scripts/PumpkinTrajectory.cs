@@ -39,7 +39,7 @@ public class PumpkinTrajectory : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hit something with trigger");
+        //Debug.Log("Hit something with trigger");
 
         if (other.transform.tag == "ground")
         {

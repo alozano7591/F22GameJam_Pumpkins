@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+using Unity.VisualScripting;
+using System.Linq;
+
 public class ScoreManager : MonoBehaviourPunCallbacks
 {
 
@@ -34,8 +38,29 @@ public class ScoreManager : MonoBehaviourPunCallbacks
 
         if(PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("master trying to add " + scoreAmt + " score to player" + playerNum);
+            //Debug.Log("master trying to add " + scoreAmt + " score to player" + playerNum);
             photonView.RPC("AddToPlayerScoreRPC", RpcTarget.All, playerNum, scoreAmt);
+
+            //since player number was created from PlayerList[index + 1], we need to subtract 1 
+            //this is also not accurate since players leaving the game causes the newst joining player to inherit a new higher number than the rest
+            if (PhotonNetwork.CountOfPlayers < playerNum)
+            {
+                Debug.Log("Player number out of range. There are " + PhotonNetwork.CountOfPlayers + " players, and player number is " + playerNum);
+            }
+            else if (PhotonNetwork.PlayerList[playerNum - 1].CustomProperties.ContainsKey("score"))
+            {
+
+                Debug.Log("attempting hash change for player score. player " + playerNum);
+
+                Hashtable hash = new Hashtable();
+                //hash.Add("SpawnPoint", spawnArray[i]);
+
+                int oldScore = (int)PhotonNetwork.PlayerList[playerNum].CustomProperties["score"];
+
+                hash.Add("Score", oldScore + 1);
+                PhotonNetwork.PlayerList[playerNum].SetCustomProperties(hash);
+            }
+            
         }
 
     }

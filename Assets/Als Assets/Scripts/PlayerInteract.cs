@@ -91,7 +91,7 @@ public class PlayerInteract : MonoBehaviourPunCallbacks
         if (!photonView.IsMine)
         {
 
-            Debug.Log("pick up the pumpkin");
+            //Debug.Log("pick up the pumpkin");
             pumpkinTrajectory.transform.parent = holdTransform;
             pumpkinTrajectory.transform.position = holdTransform.position;
             holdingPumpkin = true;

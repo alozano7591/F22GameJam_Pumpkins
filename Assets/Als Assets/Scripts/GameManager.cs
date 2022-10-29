@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+
 
 namespace Com.ThePoopCrew.SmashingPumpkins
 {
@@ -53,6 +55,12 @@ namespace Com.ThePoopCrew.SmashingPumpkins
                 }
             }
 
+            if (PhotonNetwork.IsMasterClient)
+            {
+                //TellPlayersToSpawn();
+                AssignPlayerSpawnHash(PhotonNetwork.LocalPlayer.ActorNumber);
+            }
+
         }
 
         #region Photon Callbacks
@@ -76,6 +84,51 @@ namespace Com.ThePoopCrew.SmashingPumpkins
         public void LeaveRoom()
         {
             PhotonNetwork.LeaveRoom();
+        }
+
+        //assigns random spawn value to hash so that it will be stored over network
+        //also assigned Color numbers
+        public void AssignPlayerSpawnHash()
+        {
+
+            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            {
+
+                Hashtable hash = new Hashtable();
+                //hash.Add("SpawnPoint", spawnArray[i]);
+                hash.Add("ColorNum", i);
+                hash.Add("Score", i);
+                PhotonNetwork.PlayerList[i].SetCustomProperties(hash);          //this line sets a unique spawn number for each player 
+            }
+
+        }
+
+        /// <summary>
+        /// Uses given actor number to assign hash to player on PlayerList
+        /// </summary>
+        /// <param name="playerID"></param>
+        public void AssignPlayerSpawnHash(int playerID)
+        {
+
+            int photonIndex = 0;        //the index of the the player in the PhotonNetwork.PlayerList
+
+            for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            {
+
+                if (PhotonNetwork.PlayerList[i].ActorNumber == playerID)
+                {
+                    photonIndex = i;
+                    break;
+                }
+
+            }
+
+            Hashtable hash = new Hashtable();
+            //hash.Add("SpawnPoint", spawnArray[i]);
+            hash.Add("ColorNum", photonIndex);
+            hash.Add("Score", 0);
+            PhotonNetwork.PlayerList[photonIndex].SetCustomProperties(hash);          //this line sets a unique spawn number for each player 
+
         }
 
 
@@ -106,13 +159,15 @@ namespace Com.ThePoopCrew.SmashingPumpkins
             Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
 
 
-            //if (PhotonNetwork.IsMasterClient)
-            //{
-            //    Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
 
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
 
-            //    LoadArena();
-            //}
+                //LoadArena();
+
+                AssignPlayerSpawnHash(other.ActorNumber);       //set up player hash (used for storying player values over the network)
+            }
         }
 
 
@@ -128,6 +183,17 @@ namespace Com.ThePoopCrew.SmashingPumpkins
 
             //    LoadArena();
             //}
+        }
+
+        public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+        {
+            //base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);
+
+            if(changedProps.ContainsKey("Score"))
+            {
+                Debug.Log("Player " + targetPlayer.ActorNumber + " now has a new score of " + targetPlayer.CustomProperties["Score"]);
+            }
+
         }
 
 
