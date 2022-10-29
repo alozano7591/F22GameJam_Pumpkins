@@ -22,7 +22,11 @@ public class PumpkinCrate : MonoBehaviourPunCallbacks
 
         if (other.transform.tag == "pumpkin")
         {
-            ScoreManager.Instance.AddToPlayerScore(playerNumber, 1);
+            if(PhotonNetwork.IsMasterClient)
+            {
+                ScoreManager.Instance.AddToPlayerScore(playerNumber, 1);
+            }
+            
         }
 
 
