@@ -939,7 +939,7 @@ MonoBehaviour:
   previousPos: {x: 0, y: 0, z: 0}
   movementDirection: {x: 0, y: 0, z: 0}
   jumpHeight: 10
-  playerRotSpeed: 300
+  playerRotSpeed: 800
   ourCam: {fileID: 8781428344690848314}
   playerAnim: {fileID: 0}
 --- !u!114 &7620957645250567892
