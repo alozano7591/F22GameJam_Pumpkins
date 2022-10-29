@@ -959,7 +959,7 @@ MonoBehaviour:
   playerMovement: {fileID: 0}
   grabRange: 0.8
   pumpkinTrajectory: {fileID: 0}
-  throwVelocity: {x: 0, y: 4, z: 5}
+  throwVelocity: {x: 0, y: 5, z: 8}
   holdingPumpkin: 0
 --- !u!143 &2248963231508135043
 CharacterController:
