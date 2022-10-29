@@ -14,6 +14,8 @@ public class PumpkinTrajectory : MonoBehaviourPunCallbacks
 
     public Rigidbody rb;
 
+    public int pointValue = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,11 @@ public class PumpkinTrajectory : MonoBehaviourPunCallbacks
             pumpkinInLaunch = false;
             rb.velocity = Vector3.zero;
         }
+
+        //if (other.transform.tag == "PumpkinCrate")
+        //{
+        //    ScoreManager.Instance.AddToPlayerScore(other.GetComponent<PumpkinCrate>().playerNumber, pointValue);
+        //}
     }
 
     private void OnCollisionEnter(Collision collision)

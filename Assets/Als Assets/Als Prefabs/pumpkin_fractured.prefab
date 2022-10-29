@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 919132149397072905}
   - component: {fileID: 888067229}
   - component: {fileID: 1045219175376906572}
-  - component: {fileID: 1938256454}
   - component: {fileID: 6342935933234537577}
   - component: {fileID: 1209775118}
   m_Layer: 0
@@ -142,7 +141,7 @@ SphereCollider:
   m_GameObject: {fileID: 1137772195580656044}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.32
   m_Center: {x: 0, y: 0.23, z: 0}
@@ -178,19 +177,7 @@ MonoBehaviour:
   pumpkinInLaunch: 0
   currentVelocity: {x: 0, y: 0, z: 0}
   rb: {fileID: 888067229}
---- !u!135 &1938256454
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137772195580656044}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.32
-  m_Center: {x: 0, y: 0.22, z: 0}
+  pointValue: 1
 --- !u!65 &6342935933234537577
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -818,6 +805,7 @@ GameObject:
   - component: {fileID: 8460080617482441866}
   - component: {fileID: 8097528012140888181}
   - component: {fileID: 3727544982471966680}
+  - component: {fileID: 7558086705375235738}
   m_Layer: 0
   m_Name: Pumpkin_01
   m_TagString: Untagged
@@ -890,6 +878,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &7558086705375235738
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4372667382612452209}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.41164684
+  m_Center: {x: 4.4782557, y: 0.39529166, z: 0.26327866}
 --- !u!1 &4511125590833874557
 GameObject:
   m_ObjectHideFlags: 0
