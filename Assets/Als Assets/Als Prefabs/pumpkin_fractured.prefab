@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb907fd84d0ff49419830cc2cf36faec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityVal: -9.81
+  gravityVal: -15
   pumpkinInLaunch: 0
   currentVelocity: {x: 0, y: 0, z: 0}
   rb: {fileID: 888067229}
