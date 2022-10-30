@@ -3,15 +3,23 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Photon.Pun;
+using Photon.Realtime;
+
 public class GameTimer : MonoBehaviour
 {
-    Timer gameTimer = new Timer();
+
+    public static GameTimer Instance;
+
+    //Timer gameTimer = new Timer();
     public float gameDuration;
     private float timeLeft;
     public bool timerOn = false;
     public TextMeshProUGUI timertxt;
     public Image clockImage;
     public Color32 lowTimeColor;
+
+
 
     // Start is called before the first frame update
     void Start()
