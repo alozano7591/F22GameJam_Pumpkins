@@ -24,17 +24,27 @@ public class PumpkinTrajectory : MonoBehaviourPunCallbacks
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    //// Update is called once per frame
+    //void Update()
+    //{
         
-        if(pumpkinInLaunch)
+    //    if(pumpkinInLaunch)
+    //    {
+    //        rb.MovePosition((transform.position + (currentVelocity * Time.deltaTime)));
+
+    //        currentVelocity += Vector3.up * gravityVal * Time.deltaTime;
+    //    }
+
+    //}
+
+    private void FixedUpdate()
+    {
+        if (pumpkinInLaunch)
         {
             rb.MovePosition((transform.position + (currentVelocity * Time.deltaTime)));
 
             currentVelocity += Vector3.up * gravityVal * Time.deltaTime;
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
