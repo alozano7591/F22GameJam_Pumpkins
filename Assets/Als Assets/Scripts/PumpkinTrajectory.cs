@@ -64,19 +64,6 @@ public class PumpkinTrajectory : MonoBehaviourPunCallbacks
         //}
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        Debug.Log("Hit something");
-
-        if (collision.transform.tag == "ground")
-        {
-            Debug.Log("Hit the ground");
-            pumpkinInLaunch = false;
-            rb.velocity = Vector3.zero;
-        }
-    }
-
     /// <summary>
     /// Call this to launch the pumpkin
     /// </summary>
