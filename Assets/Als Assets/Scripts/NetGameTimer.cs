@@ -21,7 +21,6 @@ public class NetGameTimer : MonoBehaviour
 
     [SerializeField]
     private bool timeLimitOn = true;
-    
 
     [Tooltip("Total Game time in seconds")]
     public double gameDuration = 120;
